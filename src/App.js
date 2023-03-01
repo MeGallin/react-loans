@@ -1,14 +1,29 @@
+import { lazy, Suspense } from 'react';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
-import FooterComponent from './Footer/FooterComponent';
-import HeaderComponent from './Header/HeaderComponent';
+import FooterComponent from './components/Footer/FooterComponent';
+import HeaderComponent from './components/Header/HeaderComponent';
+import SpinnerComponent from './components/Spinner/SpinnerComponent';
+
+const HomeView = lazy(() => import('./views/Home/HomeView'));
+const AboutView = lazy(() => import('./views/About/AboutView'));
 
 function App() {
   return (
-    <div className="container">
-      <HeaderComponent />
-      <h3>TEST</h3>
-      <FooterComponent />
-    </div>
+    <Router>
+      <div className="container">
+        <HeaderComponent />
+        <Suspense fallback={<SpinnerComponent />}>
+          <div className="content_height_adjuster">
+            <Routes>
+              <Route path="/" element={<HomeView />} exact />
+              <Route path="/about" element={<AboutView />} exact />
+            </Routes>
+          </div>
+        </Suspense>
+        <FooterComponent />
+      </div>
+    </Router>
   );
 }
 
