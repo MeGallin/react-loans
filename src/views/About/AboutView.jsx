@@ -3,9 +3,10 @@ import { AboutComponent } from '../../components/About/AboutComponent';
 
 const AboutView = () => {
   return (
-    <div>
+    <fieldset className="fieldSet">
+      <legend>About</legend>
       <AboutComponent />
-    </div>
+    </fieldset>
   );
 };
 

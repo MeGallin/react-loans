@@ -7,6 +7,7 @@ import SpinnerComponent from './components/Spinner/SpinnerComponent';
 
 const HomeView = lazy(() => import('./views/Home/HomeView'));
 const AboutView = lazy(() => import('./views/About/AboutView'));
+const FinancialView = lazy(() => import('./views/Financial/FinancialView'));
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Routes>
               <Route path="/" element={<HomeView />} exact />
               <Route path="/about" element={<AboutView />} exact />
+              <Route path="/financial" element={<FinancialView />} exact />
             </Routes>
           </div>
         </Suspense>
