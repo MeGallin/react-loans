@@ -2,9 +2,10 @@ import HomeComponent from '../../components/Home/HomeComponent';
 
 const HomeView = () => {
   return (
-    <div>
+    <fieldset className="fieldSet">
+      <legend>Home</legend>
       <HomeComponent />
-    </div>
+    </fieldset>
   );
 };
 

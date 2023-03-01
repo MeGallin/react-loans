@@ -19,6 +19,13 @@ const HeaderComponent = () => {
         >
           About
         </NavLink>
+        <NavLink
+          className={(navData) => (navData.isActive ? 'active' : '')}
+          to="/financial"
+          data-cy="header-financial-link"
+        >
+          Financial
+        </NavLink>
       </nav>
     </header>
   );
