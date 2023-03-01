@@ -1,38 +1,64 @@
-.App {
-  text-align: center;
+/* General global stye settings */
+
+body {
+  font-family: 'Signika', sans-serif;
+  font-family: 'Comfortaa', cursive;
+  background-color: black;
+  color: var(--main-font-colour);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+p {
+  font-size: 16px;
+  font-size: clamp(1rem, 1.25vh, 1.25rem);
+  font-size: max(1rem, 1vw);
+  text-align: left;
+  margin-bottom: 0.5rem;
+  line-height: 1.6rem;
+}
+h3 {
+  display: inline-block;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+:root {
+  --grid-width: 1280px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.container {
+  max-width: var(--grid-width);
+  margin: 0 auto;
+}
+.container .--fluid {
+  margin: 0;
+  max-width: 100%;
+}
+
+.content_height_adjuster {
+  height: calc(100vh - var(--header-height) - var(--footer-height));
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1em;
+  margin: 0 auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* helper classes */
+
+.global_wrapper {
+  height: 100%;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.reg-thumbs-up-icon {
+  color: var(--success);
+}
+.reg-thumbs-down-icon {
+  color: var(--danger);
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.border-temp {
+  border: 2px solid green;
 }

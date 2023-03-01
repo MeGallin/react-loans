@@ -1,0 +1,5 @@
+fieldset.fieldSet {
+  border: 1px solid var(--border-colour-light);
+  background-color: var(--fieldSet-bg-colour);
+  flex-grow: 1;
+}
