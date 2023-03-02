@@ -1,7 +1,12 @@
+import { useState } from 'react';
 import './AmortScheduleComponent.css';
 import CurrencyFormat from 'react-currency-format';
+import InputComponent from '../Input/InputComponent';
 
 const AmortScheduleComponent = () => {
+  const [amount, setAmount] = useState(0);
+  const [interestRate, setInterestRate] = useState(0);
+  const [period, setPeriod] = useState(0);
   const randId = (length) => {
     const chars =
       '0123456789abcdefghijklmnopqrstxyzABCDEFGHIJKLMNOPQRSTXYZ!"£$%^&*';
@@ -42,60 +47,89 @@ const AmortScheduleComponent = () => {
     }
     return schedule;
   }
-  const schedule = calculateAmortizationSchedule(100000, 5, 240);
+
+  const handleAmount = (e) => {
+    setAmount(e.target.value);
+  };
+  const schedule = calculateAmortizationSchedule(amount, interestRate, period);
 
   return (
     <div style={{ overflowX: 'auto' }}>
-      <table>
-        <thead>
-          <tr>
-            <th>month</th>
-            <th>PMT</th>
-            <th>principal</th>
-            <th>interest</th>
-            <th>balance</th>
-          </tr>
-        </thead>
-        <tbody>
-          {schedule.map((amort) => (
-            <tr key={amort.id}>
-              <td>{amort.month}</td>
-              <td>
-                <CurrencyFormat
-                  value={amort.payment}
-                  displayType={'text'}
-                  thousandSeparator={true}
-                  prefix={''}
-                />
-              </td>
-              <td>
-                <CurrencyFormat
-                  value={amort.principal}
-                  displayType={'text'}
-                  thousandSeparator={true}
-                  prefix={''}
-                />
-              </td>
-              <td>
-                <CurrencyFormat
-                  value={amort.interest}
-                  displayType={'text'}
-                  thousandSeparator={true}
-                  prefix={''}
-                />
-              </td>
-              <td>
-                <CurrencyFormat
-                  value={amort.balance}
-                  displayType={'text'}
-                  thousandSeparator={true}
-                  prefix={''}
-                />
-              </td>
+      <div className="input-wrapper">
+        <InputComponent
+          id="amount"
+          type="number"
+          label="amount"
+          value={amount}
+          onChange={handleAmount}
+        />
+        <InputComponent
+          id="interestRate"
+          type="number"
+          label="interest rate"
+          value={interestRate}
+          onChange={(e) => setInterestRate(e.target.value)}
+        />
+        <InputComponent
+          id="period"
+          type="number"
+          label="period months"
+          value={period}
+          onChange={(e) => setPeriod(e.target.value)}
+        />
+      </div>
+      {!amount || !interestRate || !period ? null : (
+        <table>
+          <thead>
+            <tr>
+              <th>MONTH</th>
+              <th>PMT</th>
+              <th>PRINCIPAL</th>
+              <th>INTEREST</th>
+              <th>BALANCE</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {schedule.map((amort) => (
+              <tr key={amort.id}>
+                <td>{amort.month}</td>
+                <td>
+                  <CurrencyFormat
+                    value={amort.payment}
+                    displayType={'text'}
+                    thousandSeparator={true}
+                    prefix={''}
+                  />
+                </td>
+                <td>
+                  <CurrencyFormat
+                    value={amort.principal}
+                    displayType={'text'}
+                    thousandSeparator={true}
+                    prefix={''}
+                  />
+                </td>
+                <td>
+                  <CurrencyFormat
+                    value={amort.interest}
+                    displayType={'text'}
+                    thousandSeparator={true}
+                    prefix={''}
+                  />
+                </td>
+                <td>
+                  <CurrencyFormat
+                    value={amort.balance}
+                    displayType={'text'}
+                    thousandSeparator={true}
+                    prefix={''}
+                  />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </div>
   );
 };
