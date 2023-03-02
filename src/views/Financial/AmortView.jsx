@@ -1,7 +1,7 @@
 import React from 'react';
 import AmortScheduleComponent from '../../components/AmortSchedule/AmortScheduleComponent';
 
-const FinancialView = () => {
+const AmortView = () => {
   return (
     <fieldset className="fieldSet">
       <legend>Financial</legend>
@@ -12,4 +12,4 @@ const FinancialView = () => {
   );
 };
 
-export default FinancialView;
+export default AmortView;
