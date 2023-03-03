@@ -13,19 +13,12 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
+import { randId } from '../../Utils/randomIdGenerator';
+
 const AmortScheduleComponent = () => {
   const [amount, setAmount] = useState(10000);
   const [interestRate, setInterestRate] = useState(5);
   const [period, setPeriod] = useState(36);
-  const randId = (length) => {
-    const chars =
-      '0123456789abcdefghijklmnopqrstxyzABCDEFGHIJKLMNOPQRSTXYZ!"£$%^&*';
-    let result = '';
-    for (let index = 0; index < length; index++) {
-      result += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-    return result;
-  };
 
   function calculateAmortizationSchedule(
     loanAmount,
@@ -132,7 +125,7 @@ const AmortScheduleComponent = () => {
                 activeDot={{ r: 8 }}
               />
               <Line type="monotone" dataKey="payment" stroke="pink" />
-              <Line type="monotone" dataKey="principal" stroke="yellow" />
+              <Line type="monotone" dataKey="principal" stroke="blue" />
             </LineChart>
           </ResponsiveContainer>
         </div>

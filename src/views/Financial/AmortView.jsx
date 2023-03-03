@@ -4,7 +4,7 @@ import AmortScheduleComponent from '../../components/AmortSchedule/AmortSchedule
 const AmortView = () => {
   return (
     <fieldset className="fieldSet">
-      <legend>Financial</legend>
+      <legend>Amortization Schedule</legend>
       <div>
         <AmortScheduleComponent />
       </div>

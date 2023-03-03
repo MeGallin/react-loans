@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './CapitalAppreciationComponent css';
+import './CapitalAppreciationComponent.css';
 import {
   BarChart,
   Bar,
@@ -12,20 +12,13 @@ import {
 } from 'recharts';
 import CurrencyFormat from 'react-currency-format';
 import InputComponent from '../Input/InputComponent';
+import { randId } from '../../Utils/randomIdGenerator';
 
 export const CapitalAppreciationComponent = () => {
   const [initialValue, setInitialValue] = useState(10000);
   const [interestRate, setInterestRate] = useState(0.1);
   const [periodInYears, setPeriodInYears] = useState(2);
-  const randId = (length) => {
-    const chars =
-      '0123456789abcdefghijklmnopqrstxyzABCDEFGHIJKLMNOPQRSTXYZ!"£$%^&*';
-    let result = '';
-    for (let index = 0; index < length; index++) {
-      result += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-    return result;
-  };
+
   function calculateMonthlyAppreciationSchedule(
     initialValue,
     interestRate,
@@ -91,37 +84,6 @@ export const CapitalAppreciationComponent = () => {
             onChange={(e) => setPeriodInYears(e.target.value)}
           />
         </div>
-        <div>
-          {' '}
-          <h3>Summary</h3>
-          <div>
-            If you invested{' '}
-            <CurrencyFormat
-              value={initialValue}
-              displayType={'text'}
-              thousandSeparator={true}
-              prefix={''}
-            />{' '}
-            over a period of {periodInYears} years at an interest rate of{' '}
-            {interestRate * 100}% you would receive{' '}
-            <CurrencyFormat
-              value={endVal}
-              displayType={'text'}
-              thousandSeparator={true}
-              prefix={''}
-            />{' '}
-            at the end of the period.
-          </div>
-          <div>
-            {' '}
-            <CurrencyFormat
-              value={accumulatedInt()}
-              displayType={'text'}
-              thousandSeparator={true}
-              prefix={''}
-            />
-          </div>
-        </div>
 
         <div style={{ width: '100%', height: 360, margin: '10px auto' }}>
           <ResponsiveContainer>
@@ -143,13 +105,46 @@ export const CapitalAppreciationComponent = () => {
               <Legend />
               <Bar
                 dataKey="startingValue"
-                fill="rgba(200,200,200,0.5)"
+                fill="rgba(51,51,51,1)"
                 stackId="a"
               />
-              <Bar dataKey="interestEarned" fill="yellow" stackId="a" />
-              <Bar dataKey="endingValue" fill="blue" />
+              <Bar dataKey="interestEarned" fill="blue" stackId="a" />
+              <Bar dataKey="endingValue" fill="green" />
             </BarChart>
           </ResponsiveContainer>
+        </div>
+
+        <div>
+          {' '}
+          <h3>Summary</h3>
+          <div>
+            INITIAL IVESTMENT{' '}
+            <CurrencyFormat
+              value={initialValue}
+              displayType={'text'}
+              thousandSeparator={true}
+              prefix={''}
+            />{' '}
+          </div>
+          <div>
+            RETURN{' '}
+            <CurrencyFormat
+              value={accumulatedInt()}
+              displayType={'text'}
+              thousandSeparator={true}
+              prefix={''}
+            />{' '}
+            @ {interestRate * 100}%
+          </div>
+          <div>
+            END BALANCE{' '}
+            <CurrencyFormat
+              value={endVal}
+              displayType={'text'}
+              thousandSeparator={true}
+              prefix={''}
+            />
+          </div>
         </div>
 
         <table>
