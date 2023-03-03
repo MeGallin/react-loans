@@ -18,14 +18,6 @@ const HeaderComponent = () => {
         >
           Home
         </NavLink>
-        <NavLink
-          className={(navData) => (navData.isActive ? 'active' : '')}
-          to="/about"
-          data-cy="header-about-link"
-        >
-          About
-        </NavLink>
-
         <div className="dropdown-wrapper">
           <span onClick={handleDropDown} onMouseEnter={handleDropDown}>
             Financial
@@ -51,6 +43,14 @@ const HeaderComponent = () => {
             </>
           ) : null}
         </div>
+
+        <NavLink
+          className={(navData) => (navData.isActive ? 'active' : '')}
+          to="/about"
+          data-cy="header-about-link"
+        >
+          About
+        </NavLink>
       </nav>
     </header>
   );

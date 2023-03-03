@@ -132,7 +132,7 @@ const AmortScheduleComponent = () => {
 
         {!amount || !interestRate || !period ? null : (
           <>
-            <div>
+            <div className="summary-wrapper">
               <h3>Summary</h3>
               <div>TOTAL PAYMENTS {totalPMT().toFixed(2)}</div>
               <div>TOTAL INTEREST PAYMENTS {totalIntPmt().toFixed(2)}</div>
@@ -140,11 +140,11 @@ const AmortScheduleComponent = () => {
             <table>
               <thead>
                 <tr>
-                  <th>MONTH</th>
+                  <th>MO</th>
                   <th>PMT</th>
-                  <th>PRINCIPAL</th>
-                  <th>INTEREST</th>
-                  <th>BALANCE</th>
+                  <th>PV</th>
+                  <th>INT</th>
+                  <th>BAL</th>
                 </tr>
               </thead>
               <tbody>

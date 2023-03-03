@@ -12,7 +12,7 @@ const InputComponent = ({
   onChange,
 }) => {
   return (
-    <>
+    <div className="inputComponent-wrapper">
       <div className="input-icon-wrapper">
         {label && <label htmlFor={`input-field-${label}`}>{label}</label>}
       </div>
@@ -25,7 +25,7 @@ const InputComponent = ({
         className={className}
         onChange={onChange}
       />
-    </>
+    </div>
   );
 };
 InputComponent.propTypes = {

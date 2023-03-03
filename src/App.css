@@ -55,7 +55,15 @@ p {
 .reg-thumbs-down-icon {
   color: var(--danger);
 }
-
+.summary-wrapper {
+  border: 1px solid var(--border-colour);
+  background-color: var(--fieldSet-bg-colour);
+  padding: 0.2em;
+}
+.summary-wrapper h3 {
+  text-decoration: underline;
+  text-transform: uppercase;
+}
 .border-temp {
   border: 2px solid green;
 }

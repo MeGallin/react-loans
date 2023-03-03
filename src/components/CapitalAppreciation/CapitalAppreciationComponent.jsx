@@ -65,7 +65,7 @@ export const CapitalAppreciationComponent = () => {
           <InputComponent
             id="initialValue"
             type="number"
-            label="initialValue"
+            label="amount"
             value={initialValue}
             onChange={(e) => setInitialValue(e.target.value)}
           />
@@ -79,7 +79,7 @@ export const CapitalAppreciationComponent = () => {
           <InputComponent
             id="periodInYears"
             type="number"
-            label="periodInYears years"
+            label="period years"
             value={periodInYears}
             onChange={(e) => setPeriodInYears(e.target.value)}
           />
@@ -114,11 +114,11 @@ export const CapitalAppreciationComponent = () => {
           </ResponsiveContainer>
         </div>
 
-        <div>
+        <div className="summary-wrapper">
           {' '}
           <h3>Summary</h3>
           <div>
-            INITIAL IVESTMENT{' '}
+            INITIAL INVESTMENT{' '}
             <CurrencyFormat
               value={initialValue}
               displayType={'text'}
@@ -150,10 +150,10 @@ export const CapitalAppreciationComponent = () => {
         <table>
           <thead>
             <tr>
-              <th>MONTH</th>
-              <th>PRINCIPAL</th>
-              <th>INTEREST EARNED</th>
-              <th>BALANCE</th>
+              <th>MO</th>
+              <th>PV</th>
+              <th>INT EARNED</th>
+              <th>BAL</th>
             </tr>
           </thead>
           <tbody>

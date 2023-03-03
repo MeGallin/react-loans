@@ -1,5 +1,7 @@
 nav {
   display: flex;
+  justify-content: space-between;
+  padding: 0 1em;
 }
 .dropdown-wrapper {
   display: flex;
