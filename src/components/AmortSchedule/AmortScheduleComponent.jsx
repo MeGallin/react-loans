@@ -134,8 +134,24 @@ const AmortScheduleComponent = () => {
           <>
             <div className="summary-wrapper">
               <h3>Summary</h3>
-              <div>TOTAL PAYMENTS {totalPMT().toFixed(2)}</div>
-              <div>TOTAL INTEREST PAYMENTS {totalIntPmt().toFixed(2)}</div>
+              <div>
+                TOTAL PAYMENTS{' '}
+                <CurrencyFormat
+                  value={totalPMT().toFixed(2)}
+                  displayType={'text'}
+                  thousandSeparator={true}
+                  prefix={''}
+                />
+              </div>
+              <div>
+                TOTAL INTEREST PAYMENTS{' '}
+                <CurrencyFormat
+                  value={totalIntPmt().toFixed(2)}
+                  displayType={'text'}
+                  thousandSeparator={true}
+                  prefix={''}
+                />
+              </div>
             </div>
             <table>
               <thead>
