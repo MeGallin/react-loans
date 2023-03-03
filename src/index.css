@@ -54,6 +54,7 @@ dd {
 }
 
 @import './Css/fieldSet.css';
+@import './Css/table.css';
 
 /* Set core body defaults */
 body {
