@@ -15,9 +15,6 @@ p {
   margin-bottom: 0.5rem;
   line-height: 1.6rem;
 }
-h3 {
-  display: inline-block;
-}
 
 :root {
   --grid-width: 1280px;
