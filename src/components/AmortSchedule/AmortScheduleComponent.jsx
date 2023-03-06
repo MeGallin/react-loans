@@ -14,6 +14,8 @@ import {
 } from 'recharts';
 
 import { randId } from '../../Utils/randomIdGenerator';
+import ModalComponent from '../Modal/ModalComponent';
+import { FaInfoCircle } from 'react-icons/fa';
 
 const AmortScheduleComponent = () => {
   const [amount, setAmount] = useState(10000);
@@ -166,7 +168,9 @@ const AmortScheduleComponent = () => {
               <tbody>
                 {schedule.map((amort) => (
                   <tr key={amort.id}>
-                    <td>{amort.month}</td>
+                    <td>
+                      <p>{amort.month}</p>
+                    </td>
                     <td>
                       <CurrencyFormat
                         value={amort.payment}
@@ -191,12 +195,68 @@ const AmortScheduleComponent = () => {
                         prefix={''}
                       />
                     </td>
-                    <td>
+                    <td className="month-wrapper">
                       <CurrencyFormat
                         value={amort.balance}
                         displayType={'text'}
                         thousandSeparator={true}
                         prefix={''}
+                      />
+                      <ModalComponent
+                        openButtonTitle={<FaInfoCircle size={22} />}
+                        closeButtonTitle="X"
+                        props={
+                          <div className="modal-info-wrapper">
+                            <div className="modal-info-wrapper-item">
+                              <p>
+                                PMT to date:{' '}
+                                <CurrencyFormat
+                                  value={(amort.month * amort.payment).toFixed(
+                                    2,
+                                  )}
+                                  displayType={'text'}
+                                  thousandSeparator={true}
+                                  prefix={''}
+                                  className="text-bold"
+                                />
+                              </p>
+                            </div>
+                            <div className="modal-info-wrapper-item">
+                              <p>
+                                {' '}
+                                INT paid to date:{' '}
+                                <CurrencyFormat
+                                  value={schedule
+                                    .reduce((acc, val, i) => {
+                                      if (i < amort.month) {
+                                        return acc + val.interest;
+                                      } else {
+                                        return acc;
+                                      }
+                                    }, 0)
+                                    .toFixed(2)}
+                                  displayType={'text'}
+                                  thousandSeparator={true}
+                                  prefix={''}
+                                  className="text-bold"
+                                />
+                              </p>
+                            </div>
+                            <div className="modal-info-wrapper-item">
+                              <p>
+                                {' '}
+                                BAL to date:{' '}
+                                <CurrencyFormat
+                                  value={amort.balance}
+                                  displayType={'text'}
+                                  thousandSeparator={true}
+                                  prefix={''}
+                                  className="text-bold"
+                                />
+                              </p>
+                            </div>
+                          </div>
+                        }
                       />
                     </td>
                   </tr>

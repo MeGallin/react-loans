@@ -64,6 +64,9 @@ p {
   text-decoration: underline;
   text-transform: uppercase;
 }
+.text-bold {
+  font-weight: bold;
+}
 .border-temp {
   border: 2px solid green;
 }

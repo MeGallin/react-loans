@@ -56,6 +56,8 @@ dd {
 @import './Css/fieldSet.css';
 @import './Css/table.css';
 @import './Css/scrollBar.css';
+@import './Css/modalInfo.css';
+'
 
 /* Set core body defaults */
 body {

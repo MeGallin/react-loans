@@ -129,7 +129,7 @@ export const CapitalAppreciationComponent = () => {
           <div>
             RETURN{' '}
             <CurrencyFormat
-              value={accumulatedInt()}
+              value={accumulatedInt().toFixed()}
               displayType={'text'}
               thousandSeparator={true}
               prefix={''}
