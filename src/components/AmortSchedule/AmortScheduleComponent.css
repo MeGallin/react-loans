@@ -1,3 +1,8 @@
 .input-wrapper {
   display: flex;
 }
+.month-wrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+}
