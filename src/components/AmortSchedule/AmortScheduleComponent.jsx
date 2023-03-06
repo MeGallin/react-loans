@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import './AmortScheduleComponent.css';
 import CurrencyFormat from 'react-currency-format';
 import InputComponent from '../Input/InputComponent';
@@ -16,11 +17,23 @@ import {
 import { randId } from '../../Utils/randomIdGenerator';
 import ModalComponent from '../Modal/ModalComponent';
 import { FaInfoCircle } from 'react-icons/fa';
+import { amortScheduleAmountAction } from '../../Store/Actions/AmortActions';
 
 const AmortScheduleComponent = () => {
-  const [amount, setAmount] = useState(10000);
-  const [interestRate, setInterestRate] = useState(5);
-  const [period, setPeriod] = useState(36);
+  const dispatch = useDispatch();
+  const amortScheduleAmount = useSelector((state) => state.amortScheduleAmount);
+  const {
+    amount: inputAmount,
+    interestRate: inputInterestRate,
+    period: inputPeriod,
+  } = amortScheduleAmount;
+
+  const [amount, setAmount] = useState(!inputAmount ? 100000 : inputAmount);
+  const [interestRate, setInterestRate] = useState(
+    !inputInterestRate ? 5 : inputInterestRate,
+  );
+  const [period, setPeriod] = useState(!inputPeriod ? 36 : inputPeriod);
+  const [schedule, setSchedule] = useState([]);
 
   function calculateAmortizationSchedule(
     loanAmount,
@@ -56,7 +69,6 @@ const AmortScheduleComponent = () => {
   const handleAmount = (e) => {
     setAmount(e.target.value);
   };
-  const schedule = calculateAmortizationSchedule(amount, interestRate, period);
 
   const totalPMT = () => {
     if (schedule) {
@@ -74,6 +86,11 @@ const AmortScheduleComponent = () => {
       }, 0);
     }
   };
+
+  useEffect(() => {
+    dispatch(amortScheduleAmountAction({ amount, interestRate, period }));
+    setSchedule(calculateAmortizationSchedule(amount, interestRate, period));
+  }, [dispatch, amount, interestRate, period]);
 
   return (
     <>
@@ -136,6 +153,24 @@ const AmortScheduleComponent = () => {
           <>
             <div className="summary-wrapper">
               <h3>Summary</h3>
+              <div>
+                If you borrow{' '}
+                <CurrencyFormat
+                  value={amount}
+                  displayType={'text'}
+                  thousandSeparator={true}
+                  prefix={''}
+                />{' '}
+                @ {interestRate} % over {period} MONTHS makes your PAYMENTS will
+                be{' '}
+                <CurrencyFormat
+                  value={schedule[0]?.payment.toFixed(2)}
+                  displayType={'text'}
+                  thousandSeparator={true}
+                  prefix={''}
+                />{' '}
+                per MONTH.
+              </div>
               <div>
                 TOTAL PAYMENTS{' '}
                 <CurrencyFormat
